@@ -57,7 +57,7 @@ In our agency, each SEO project had a simple set of roles: PM for Project Manage
 ### The Commented Script
 
 Here's the main file that you'll be customizing
-
+<script src="https://gist.github.com/noahlearner/19680a87cd03e3c2780b67c962b2e943.js"></script>
 You'll need to update the Index.js file as follows:
 
 1.  **Update the company** to match your Teamwork company name. You can find this after logging into teamwork in the URL address bar in the following pattern: https://yourcompanyname.teamwork.com
