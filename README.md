@@ -343,4 +343,4 @@ You can test the cron by modifying and your cronjob file so that the time and da
 
 After you run the script, make sure to delete the unwanted tasklists in each project and get stoked for time savings.
 
-#### Hats off to our Team Member [James O'Brien](https://github.com/notjamesobrien) for turning my vanilla / Jquery code into node execution.
+#### Hats off to our Team Member [James O'Brien](https://github.com/notjamesobrien) for turning my vanilla JS / jQuery code into this node execution.
