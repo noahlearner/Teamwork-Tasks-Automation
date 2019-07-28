@@ -342,3 +342,5 @@ If you want to use our method add the following line to the end of your crontab:
 You can test the cron by modifying and your cronjob file so that the time and date are a few minutes out from now. Again, use Cronguru to help you set that up.
 
 After you run the script, make sure to delete the unwanted tasklists in each project and get stoked for time savings.
+
+#### Hats off to our Team Member [James O'Brien](https://github.com/notjamesobrien) for turning my vanilla / Jquery code into node execution.
