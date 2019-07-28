@@ -48,7 +48,7 @@ In our agency, each SEO project had a simple set of roles: PM for Project Manage
 
 1.  [Download the zip file](https://agencyautomators.com/files/auto.zip)
 
-    The zip contains the index.js file (that you'll see commented below) and also the node dependencies you'll need.
+    The zip contains the [index.js file]() (that you'll see commented below) and also the node dependencies you'll need.
 
 2.  Edit your copy of index.js to match your agency's needs.
 3.  Upload the auto folder (and all files inside) to your server.
@@ -56,7 +56,7 @@ In our agency, each SEO project had a simple set of roles: PM for Project Manage
 
 ### The Commented Script
 
-Here's the main file that you'll be customizing
+Here's the [index.js file](https://github.com/noahlearner/Teamwork-Tasks-Automation/blob/master/index.js) that you'll be customizing
 
 ```
 const express = require('express'),
