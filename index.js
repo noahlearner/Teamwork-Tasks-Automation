@@ -4,7 +4,8 @@ const express = require('express'),
       app = express(),
       moment = require('moment'),
       company = "xxx", //change to your Teamwork Company Name
-      key = "xxx" // change to your api key. Click on your Initials > edit my details > api key and mobile found in top Corner of your teamwork log in. 
+      key = "xxx" 
+// change to your api key. Click on your Initials > edit my details > api key and mobile found in top Corner of your teamwork log in. 
 
 
 let d = new Date(),
@@ -13,7 +14,10 @@ let d = new Date(),
     month = months[n]
 
 const handleProjectData = () => {
-  const url = `https://${company}.teamwork.com/projects.json?catId=13632,13634,13633,13630,13631` // these catIds are the project Category ids that we want to run our automation for.  This allows you to limit the scope for the automation to run for specific project categories.
+  const url = `https://${company}.teamwork.com/projects.json?catId=111,112,1234,123,12345` 
+  // these catIds are the project Category ids that we want to run our automation for.  
+  // This allows you to limit the scope for the automation to run for specific project categories.
+  // You'll need to replace these with the category Ids that Correspond to *Your* Teamwork installation
   fetch(url, {
     headers: { 'Authorization': `BASIC ${btoa(`${key}:xxx`)}` }
   }).then(r => r.json())
@@ -30,13 +34,38 @@ const handleProjectData = () => {
   }).catch(e => console.error(e))
 }
 /* 
-In this section of the script you'll see that we have four roles calles SEO, DEV, PPC, and PM.  Change these to match the names of the roles that you've assigned inside your projects. 
+In this section of the script you'll see that we have four roles calles SEO, DEV, PPC, and PM.  
+Change these to match the names of the roles that you've assigned inside your projects.
 
-Changing Role Variable Names
+For Example, Let’s change the role from SEO to OUTREACH:
 
-For example, below you see let seoVal = "SEO". This matches our agency's naming convention.  You can change the variable name "seoVal" to match what you want to name it, but you'll need to update the the variable throughout the rest of the script below.  The same goes for the indexSEO variable name and  "SEO" role Name.  It matches what we've named that role inside Teamwork.  If you have other roles feel free to update the "SEO" to "VA" or "Outreach" etc.
+OLD CODE
 
-Adding new Roles
+let seoVal = "SEO",
+          indexSEO = data1.roles.findIndex((item, i) => {
+            if (item.name != null) {
+              return item.name === seoVal && item.users.length
+            } else {
+              return 0
+            }
+          })
+
+     let seo =' ',dev = ' ', ppc =' ', pm = ' ', catId = ' ';
+
+NEW CODE
+
+let outreachVal = "OUTREACH",
+          indexOutreach = data1.roles.findIndex((item, i) => {
+            if (item.name != null) {
+              return item.name === outreachVal && item.users.length
+            } else {
+              return 0
+            }
+          })
+
+     let outreach =' ',dev = ' ', ppc =' ', pm = ' ', catId = ' ';
+
+*Adding new Roles*
 
 For each role below you'll see a code block like: 
 
@@ -49,10 +78,10 @@ let seoVal = "SEO",
             }
           })
           
-To add a new Role, prepend the above codeblock above line 63, and update the variable name, and the indexSEO and "SEO" role name to match your new role. 	
-	
-	
+To add a new Role, prepend the above codeblock above line 92, and update the variable name, 
+and the indexSEO and "SEO" role name to match your new role. 	
 */
+
 const fetchProjectRoles = (item, categoryId) => {
   const url = `https://${company}.teamwork.com/projects/${item}/roles.json`
   fetch(url, {
@@ -92,21 +121,45 @@ const fetchProjectRoles = (item, categoryId) => {
 
      let seo ='',dev = '', ppc ='', pm = '', catId = '';
 /* 
-	You need to update line 93 so that the variable names match what you've set above.  You'll also need to add any new roles above to match the roles inside your company.	
-	
+You need to update line 122 so that the variable names match what you've set above.  
+You'll also need to add any new roles above to match the roles inside your company.	
 */
-     if(indexSEO == -1){ seo = '' } else { seo = "\"SEO\": "+data1.roles[indexSEO].users[0].id+"," } // We are assigning the SEO user that is in place to all SEO tasks.  
-     if(indexDev == -1){ dev ='' } else { dev = "\"DEV\" :"+data1.roles[indexDev].users[0].id+"," } // We are assigning the DEV user that is in place to all DEV tasks.  
+     if(indexSEO == -1){ seo = '' } else { seo = "\"SEO\": "+data1.roles[indexSEO].users[0].id+"," } 
+	  // We are assigning the SEO user that is in place to all SEO tasks.  
+     if(indexDev == -1){ dev ='' } else { dev = "\"DEV\" :"+data1.roles[indexDev].users[0].id+"," } 
+	  // We are assigning the DEV user that is in place to all DEV tasks.  
 
-     if(indexPPC == -1){ ppc ="\"PPC\": 1112" } else { ppc = "\"PPC\": "+data1.roles[indexPPC].users[0].id+"" }  // We are assigning the PPC user that is in place to all PPC tasks. Note for this role we have a fallback USER Id in place in case there is not a PPC assigned to the task. 
-     if(indexPM == -1){ pm ="\"PM\": 1111," } else { pm = "\"PM\": "+data1.roles[indexPM].users[0].id+"," }   // We are assigning the PM user that is in place to all PPC tasks. Note for this role we have a fallback USER Id in place in case there is not a PM assigned to the task. 
+     if(indexPPC == -1){ ppc ="\"PPC\": 1112" } else { ppc = "\"PPC\": "+data1.roles[indexPPC].users[0].id+"" }  
+	  // We are assigning the PPC user that is in place to all PPC tasks. 
+	  // Note for this role we have a fallback USER Id in place in case there is not a PPC assigned to the task. 
+     if(indexPM == -1){ pm ="\"PM\": 1111," } else { pm = "\"PM\": "+data1.roles[indexPM].users[0].id+"," }   
+	  // We are assigning the PM user that is in place to all PPC tasks. 
+	  // Note for this role we have a fallback USER Id in place in case there is not a PM assigned to the task. 
  
+/*
+An example where we change the role from SEO to OUTREACH, alter your code as follows:
 
-     if(categoryId == 13634) catId = "713735" //This marries the project inside project category 13634 (SEO XS RETAINER ) with the tasklist template #713735 called SEO - XS.  Update the CategoryId and Tasklist template ID to match the category # inside your Teamwork installation.
-     if(categoryId == 13630) catId = "713732" //This marries the project inside project category 13630 (SEO S RETAINER ) with the tasklist template #713732 called SEO - S.  Update the CategoryId and Tasklist template ID to match the category # inside your Teamwork installation.
-     if(categoryId == 13631) catId = "749551" //This marries the project inside project category 13631 (SEO M RETAINER ) with the tasklist template #749551 called SEO - M.  Update the CategoryId and Tasklist template ID to match the category # inside your Teamwork installation.
-     if(categoryId == 13632) catId = "1179505" //This marries the project inside project category 13632 (SEO L RETAINER ) with the tasklist template #1179505 called SEO - L.  Update the CategoryId and Tasklist template ID to match the category # inside your Teamwork installation.
-     if(categoryId == 13633) catId = "1179542" //This marries the project inside project category 13633 (SEO XL RETAINER ) with the tasklist template #1179542 called SEO - L.  Update the CategoryId and Tasklist template ID to match the category # inside your Teamwork installation.
+Old Code
+if(indexSEO == -1){ seo = ' ' } else { seo = "\"SEO\": "+data1.roles[indexSEO].users[0].id+"," }
+
+New Code where we've changed the role from SEO to OUTREACH
+if(indexOutreach == -1){ outreach = ' ' } else { outreach = "\"OUTREACH\": "+data1.roles[indexOutreach].users[0].id+"," }
+*/
+     if(categoryId == 13634) catId = "713735" 
+	  // This marries the project inside project category 13634 (SEO XS RETAINER ) with the tasklist template #713735 called SEO - XS.  
+	  // Update the CategoryId and Tasklist template ID to match the category # inside your Teamwork installation.
+     if(categoryId == 13630) catId = "713732" 
+	  // This marries the project inside project category 13630 (SEO S RETAINER ) with the tasklist template #713732 called SEO - S.  
+	  // Update the CategoryId and Tasklist template ID to match the category # inside your Teamwork installation.
+     if(categoryId == 13631) catId = "749551" 
+	  // This marries the project inside project category 13631 (SEO M RETAINER ) with the tasklist template #749551 called SEO - M.  
+	  // Update the CategoryId and Tasklist template ID to match the category # inside your Teamwork installation.
+     if(categoryId == 13632) catId = "1179505" 
+	  // This marries the project inside project category 13632 (SEO L RETAINER ) with the tasklist template #1179505 called SEO - L.  
+	  // Update the CategoryId and Tasklist template ID to match the category # inside your Teamwork installation.
+     if(categoryId == 13633) catId = "1179542" 
+	  //This marries the project inside project category 13633 (SEO XL RETAINER ) with the tasklist template #1179542 called SEO - L.  
+	  // Update the CategoryId and Tasklist template ID to match the category # inside your Teamwork installation.
 
      let jason = '{"todo-list":{"name":"' + month + ' SEO Tasks","todo-list-template-id": "'+catId+'","todo-list-template-assignments":{'+seo+dev+pm+ppc+'}}}';
 
