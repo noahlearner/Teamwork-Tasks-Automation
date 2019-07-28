@@ -1,50 +1,8 @@
 # How to Automate Monthly Tasklist Creation inside Teamwork Projects
 
-Learn how to set up an automation that will help you save at least 1 hour of work per month for every 10 clients you have inside Teamwork.
+## The Agency Automators Monthly Recurring Tasklist Solution
 
-We'll be building an automated tool (a node based server that's thoroughly commented to ease the process for you) with step by step instructions to make this as easy for you as possible.
-
-## Efficient Project management is critical to a digital agency's success
-
-Managing a team of digital marketers means helping them work at peak efficiency with as few roadblocks as possible. Sometimes little things can make a huge difference. In our agency, recurring tasks and how they look to each team member, was getting in the way to our success.
-
-When I signed up with [Teamwork Projects](https://www.teamwork.com/project-management-software/), I was stoked because it allowed us to quickly set up and powerfully manage projects for a digital marketing agency of any size. It is our favorite project management software and is currently one of the most popular choices for digital marketing agencies needing to run efficient projects, workflows, and recurring work like monthly retainers.
-
-One feature I really like is the ability to set up recurring tasks (or a task that repeats routinely daily, weekly or monthly or annually).
-
-Teamwork allows us to assign the task to repeat each Tuesday.
-
-I set up each project up once and then Huzzah, each team member would execute the tasks each month.
-
-> Then team members started to offer feedback.
-
-## The Problem
-
-While I was stoked about the project administration simplicity, the team hated it because when they marked a task complete, it wouldn't go away, it would just create a new task with the next deadline.
-
-The fact that the list never seemed to get smaller **made them feel anxious**.
-
-> The team's anxiety was hurting their ability to get their jobs done at peak performance. And this was what compelled us to find a better way to work.
-
-So I dove in deep into [using Tasklist Templates](https://support.teamwork.com/projects/project-sections/adding-tasks-from-a-task-list-template) in Teamwork's robust help center.
-
-### What's a tasklist template?
-
-A Teamwork Projects tasklist template is a tasklist that you create inside your Settings (if you have the appropriate permissions) wherein you can define the task's details, resource files, start and end dates, team member or role (more on this below), and more.
-
-Simple and very powerful, they would serve as the cornerstone of our solution.
-
-We already used tasklist templates and knew that a more structured and automated approach could be the solution we needed.
-
-## Goal Setting
-
-First, we needed to define what success would look like. We knew that our new way of managing monthly work would need to:
-
-*   Make it easy for team members to work at peak performance with streamlined visibilty into remaining monthly tasks to execute.
-*   Make less work for our project manager to manage on a monthly basis. Without automation, I envisioned a dystopian nightmare (too much perhaps good reader?) where our PM would import tasks from tasklist templates each month and then manually assign tasks to team members.
-*   > We learned that automating this process could save 1 hour /month of work for every 10 projects in Teamwork.
-
-## The Solution
+Build your monthly recurring tasklists with this simple tool
 
 After diving into [Teamwork's api documentation](https://developer.teamwork.com/) around [projects](https://developer.teamwork.com/projects/projects/retrieve-all-projects), [roles](https://developer.teamwork.com/projects/project-roles/list-roles-on-a-project), and [tasklists](https://developer.teamwork.com/projects/task-lists/create-task-list) we saw a path.
 
@@ -88,7 +46,7 @@ In our agency, each SEO project had a simple set of roles: PM for Project Manage
 
 ### The Script
 
-1.  [Download the zip file](files/auto.zip)
+1.  [Download the zip file](https://agencyautomators.com/files/auto.zip)
 
     The zip contains the index.js file (that you'll see commented below) and also the node dependencies you'll need.
 
@@ -105,7 +63,7 @@ You'll need to update the Index.js file as follows:
 1.  **Update the company** to match your Teamwork company name. You can find this after logging into teamwork in the URL address bar in the following pattern: https://yourcompanyname.teamwork.com
 2.  **Update your API Key: Click on your Initials > edit my details > api key and mobile found in top Corner of your teamwork log in.**
 3.  **Update the catIds Query parameters list to include ALL Project Category Ids you want the monthly automation to run for.** You can get these ids, by going to the projects tab and hovering over one of the categories in the left of your window. The category ID will at the end of the URL ?catid=1234 where the 1234 is the category ID.
-4.  **Update the roles to match the role names as you assigned them to every project.** Let's look an example below that is also in the commented gist: ![changing the role to match your agency](assets/images/change-role.png)
+4.  **Update the roles to match the role names as you assigned them to every project.** Let's look an example below that is also in the commented gist: ![changing the role to match your agency](https://agencyautomators.com/assets/images/change-role.png)
 5.  **Update the Variable assigments as found in lines 132 - 142** to match the roles in your agency. To take the first example found on line 132 you'd need to change as follows:  
     if(indexSEO == -1){ seo = '' } else { seo = "\"SEO\": "+data1.roles[indexSEO].users[0].id+"," }  
 
@@ -190,4 +148,4 @@ For the purpose of this article we'll be using a root password to make it easier
 
     After you run the script, make sure to delete the unwanted tasklists in each project and get stoked for time savings.
 
-    <style>ol li, ul li {font-family: futura;} h1,h2,h3,h4,h5 {;font-weight: bold;}</style>
+
