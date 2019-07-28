@@ -319,7 +319,16 @@ After creating settings, connect to the server. You'll be set up in the root dir
 
 #### Placing the script on your server
 
-Now that you you've edited your index.js file, you'll want to ftp the auto folder named auto **and all the files and folders inside** to root folder in your new server.
+Now that you you've edited your index.js file, you'll want to ftp this repository into a new folder (that you'll create) named auto in your root folder.
+
+Thus /root/auto will contain the following:
+
+- node modules (and all sub folders)
+- index.js (your modified version)
+- package.json
+- package-lock.json
+
+to a folder called auto in your root folder in your new server.
 
 We are so close now. Get excited.
 
