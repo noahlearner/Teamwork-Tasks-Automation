@@ -112,40 +112,38 @@ For the purpose of this article we'll be using a root password to make it easier
     3.  Confirming the new password by typing it in again at next prompt.
 10.  Write down /type out your new password, you'll need this to set up your FTP Software / ssh into your server later.
 
-    #### Setup FTP / SSH Access
+### Setup FTP / SSH Access
 
-    Open up your FTP tool of choice. I use [Transmit](https://panic.com/transmit/) for Mac which is made by Panic. There are tons of free options if you prefer including [Filezilla](https://filezilla-project.org/).
+Open up your FTP tool of choice. I use [Transmit](https://panic.com/transmit/) for Mac which is made by Panic. There are tons of free options if you prefer including [Filezilla](https://filezilla-project.org/).
 
-    In terminal, we set up our FTP connection like so:
+In terminal, we set up our FTP connection like so:
 
-    Port 22, SFTP, Address: is your Digital Ocean Droplet's Ip address: User: root, password, your newly created password.
+Port 22, SFTP, Address: is your Digital Ocean Droplet's Ip address: User: root, password, your newly created password.
 
-    After creating settings, connect to the server. You'll be set up in the root directory of your droplet. This is where you'll add your automation files in the next few steps.
+After creating settings, connect to the server. You'll be set up in the root directory of your droplet. This is where you'll add your automation files in the next few steps.
 
-    #### Placing the script on your server
+#### Placing the script on your server
 
-    Now that you you've edited your index.js file, you'll want to ftp the auto folder named auto **and all the files and folders inside** to root folder in your new server.
+Now that you you've edited your index.js file, you'll want to ftp the auto folder named auto **and all the files and folders inside** to root folder in your new server.
 
-    We are so close now. Get excited.
+We are so close now. Get excited.
 
-    #### Setting up the Cron
+#### Setting up the Cron
 
-    You can edit your cron via FTP or via SSH, we'll show you how to edit it via FTP, because it is super easy.
+You can edit your cron via FTP or via SSH, we'll show you how to edit it via FTP, because it is super easy.
 
-    In your FTP software you'll want to go up one level, and then navigate to Var > Spool > cron > crontabs > and double click the file named root inside. We'll be adding one line to the end of the current crontab.
+In your FTP software you'll want to go up one level, and then navigate to Var > Spool > cron > crontabs > and double click the file named root inside. We'll be adding one line to the end of the current crontab.
 
-    We set up our cron so that it runs at midnight on the first day of each month. You can modify the timing to match your needs by going to [cronguru](https://crontab.guru/) to learn the proper syntax.
+We set up our cron so that it runs at midnight on the first day of each month. You can modify the timing to match your needs by going to [cronguru](https://crontab.guru/) to learn the proper syntax.
 
-    If you want to use our method add the following line to the end of your crontab:
+If you want to use our method add the following line to the end of your crontab:
 
-    0 0 1 * * cd /root/auto && node index.js > /tmp/project.log
+0 0 1 * * cd /root/auto && node index.js > /tmp/project.log
 
-    **This sentence tells the cron to go into your auto folder and run your index.js file with node at midnight on the first day of the month.**
+**This sentence tells the cron to go into your auto folder and run your index.js file with node at midnight on the first day of the month.**
 
-    #### Testing the Cron
+#### Testing the Cron
 
-    You can test the cron by modifying and your cronjob file so that the time and date are a few minutes out from now. Again, use Cronguru to help you set that up.
+You can test the cron by modifying and your cronjob file so that the time and date are a few minutes out from now. Again, use Cronguru to help you set that up.
 
-    After you run the script, make sure to delete the unwanted tasklists in each project and get stoked for time savings.
-
-
+After you run the script, make sure to delete the unwanted tasklists in each project and get stoked for time savings.
