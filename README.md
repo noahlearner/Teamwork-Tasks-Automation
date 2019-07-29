@@ -26,7 +26,7 @@ You need to create a tasklist template for each Project Category **that you want
 
 **Pro tip #2:** assign each task to choose later and put the name of the role in the popup like this:
 
-<a href="https://www.youtube.com/watch?v=SInw9NxEwEM" target="_blank"><img src="https://img.youtube.com/vi/SInw9NxEwEM/0.jpg"/></a>
+<div class='cloudapp-embed' data-slug='f354179ffabf'><a href='https://cl.ly/f354179ffabf'>Screen Recording 2019-07-27 at 11.34 AM.mov</a><script async src='https://embed.cl.ly/embedded.gz.js' charset='utf-8'></script></div>
 
 This will allow our automation to assign the task to the user with that role inside the project when the automation runs each month.
 
