@@ -26,7 +26,7 @@ You need to create a tasklist template for each Project Category **that you want
 
 **Pro tip #2:** assign each task to choose later and put the name of the role in the popup like this:
 
-<iframe src='https://cl.ly/f354179ffabf?' width='575' height='400' style='border:none' frameborder='0' allowtransparency='true' allowfullscreen='true'></iframe>
+<a href='https://cl.ly/f354179ffabf' target='_blank'>Screen Recording 2019-07-27 at 11.34 AM.mov</a>
 
 This will allow our automation to assign the task to the user with that role inside the project when the automation runs each month.
 
